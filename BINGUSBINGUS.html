@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fortune Teller</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+
+    <style>
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image:  url('bingus.jpg');
+            color: #fff;
+            text-align: center;    
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: 100%;
+            position: absolute;
+        }
+
+        h1 {
+            width: 82%;
+            max-width: 600px;
+            font-weight: 500;
+            font-size: 42px;
+        }
+
+        button {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 15px 20px;
+            margin-top: 40px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 2px 2px 12px rgba(0,0,0,.2);
+            transition: transform .3s;
+        }
+
+        button:hover {
+            transform: scale(1.125);
+        }
+
+        button:focus {
+			outline:none; /* Not ideal for accessibility */
+		}
+
+        @keyframes fade {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .fade-animation {
+            animation: fade .5s;
+        }
+
+    </style>
+
+</head>
+    <body>
+
+        <h1 id="fortune-holder" class="fade-animation">
+             Let Bingus Speak To You?
+        </h1>
+
+        <button onclick="getFortune()">
+            Hear Bingus
+        </button>
+
+
+        <script>
+
+            // Create array
+            var fortunesArray = [
+                "Bingus says good luck will come your way",
+                "You've upset bingus, bad luck is coming",
+                "Bingus says, 'whatever you're thinking about doing, don't do it'",
+                "Meow meow meow meow meow",
+                "Meow meow meow meow meow MEOW",
+                "Bingus says, 'girl it's not worth being upset over, get some chocolate'",
+                "*crypted and unnerving sounds*",
+                "Why are you talking to me? Get some friends.",        
+                "If you're looking for something, look in the drawer closest to your left. No, other left." ,
+                "uh, moo.",
+                "Have you tried chewing on it?",
+                "Trying to read your mind over the internet is kind of hard, give me some slack",
+                "No.",
+                "Yeah you really do need some friends",
+                "Have you considered looking up a tutorial on youtube?",
+                "And how is that my problem?",
+                "I suggest you feed me, dry food preferably",
+                "uh, yeah, friends, you might want some",
+                "i don't even really exist? stop consulting me for medical advice please",
+                "never gonna give you up never gonna let you down never gonna run around and desert you never gonna make you cry never gonna say goodbye never gonna tell a lie and hurt you (oooo give you up)"
+            ];
+
+            function getFortune() {
+
+                // Get random item from array
+                var randomFortune = fortunesArray[ Math.floor(
+                    Math.random()*fortunesArray.length )
+                ];
+
+                // Log random item to the console 
+                console.log(randomFortune);
+
+                // Create a variable for the fortune-holder element in the html
+                var fortuneHolder = document.getElementById("fortune-holder");
+
+                // Put the randomFortune value into the fortune-holder element
+                fortuneHolder.innerHTML = randomFortune;
+
+                // Remove animation class (if it has it)
+                fortuneHolder.classList.remove("fade-animation");
+
+                // Trigger reflow
+                void fortuneHolder.offsetWidth;
+
+                // Re-add the animation class
+                fortuneHolder.classList.add("fade-animation");
+
+            }
+
+        </script>
+    </body>
+</html>
